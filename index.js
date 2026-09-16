@@ -1,4 +1,4 @@
-const axios = require("axios");
+onst axios = require("axios");
 require("dotenv").config();
 
 const { App } = require("@slack/bolt");
@@ -22,11 +22,10 @@ app.command("/athl-help", async ({ ack, respond }) => {
     text: `Available Commands:
 /athl-ping - Check bot latency
 /athl-catfact - Get a cat fact
-/athl-dogfact - Get a dog fact
 /athl-joke - Get a dad joke`,
   });
 });
-.#here i have added dadjokes and dog facts that are not listed on the gude....
+
 app.command("/athl-catfact", async ({ ack, respond }) => {
   await ack();
 
@@ -38,17 +37,6 @@ app.command("/athl-catfact", async ({ ack, respond }) => {
   }
 });
 
-app.command("/athl-dogfact", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    const response = await axios.get("https://dog-api.kinduff.com/api/facts");
-    const fact = response.data[0]?.fact || "No dog fact available right now.";
-    await respond({ text: `Dog Fact:\n${fact}` });
-  } catch (err) {
-    await respond({ text: "Failed to fetch a dog fact." });
-  }
-});
 
 app.command("/athl-joke", async ({ ack, respond }) => {
   await ack();
